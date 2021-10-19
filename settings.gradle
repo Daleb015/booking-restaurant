@@ -1,0 +1,6 @@
+rootProject.name = 'booking-restaurant'
+
+include 'domain'
+include 'infraestructure'
+include 'application'
+

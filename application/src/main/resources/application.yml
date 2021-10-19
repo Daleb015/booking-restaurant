@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    username: root
+    password: root
+    url: "jdbc:mysql://localhost:3307/BOOKING_RESTAURANT?useSSL=false"
+    hikari:
+      maximum-pool-size: 5
+      connection-timeout: 15000
+      idle-timeout: 300000
+      max-lifetime: 900000
+  jpa:
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+
+
