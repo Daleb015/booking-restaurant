@@ -18,6 +18,9 @@ public class ReservationEntity {
     @Column(name = "LOCATOR")
     private String locator;
 
+    @Column(name = "TURN")
+    private String turn;
+
     @Column(name = "PERSON")
     private Long person;
 
