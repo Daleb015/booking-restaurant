@@ -1,6 +1,3 @@
 rootProject.name = 'booking-restaurant'
-
-include 'domain'
-include 'infraestructure'
-include 'application'
+include("domain","infraestructure","application")
 

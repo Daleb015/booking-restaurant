@@ -1,0 +1,43 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath(
+                'org.springframework.boot:spring-boot-gradle-plugin:2.5.5')
+    }
+}
+
+plugins {
+    id "io.freefair.lombok" version "6.2.0"
+}
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: "io.freefair.lombok"
+    apply plugin: 'maven-publish'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom 'org.springframework.boot:spring-boot-dependencies:2.5.5'
+        }
+    }
+
+    dependencies {
+        implementation "org.springframework.boot:spring-boot-starter-web"
+        implementation "org.springframework.boot:spring-boot-starter-actuator"
+        implementation "org.springframework.data:spring-data-jpa"
+        implementation "org.springframework.boot:spring-boot-starter"
+        testImplementation "org.springframework.boot:spring-boot-starter-test"
+    }
+
+
+}
+
+
+
