@@ -8,14 +8,9 @@ buildscript {
     }
 }
 
-plugins {
-    id "io.freefair.lombok" version "6.2.0"
-}
-
-allprojects {
+subprojects {
     apply plugin: 'java'
     apply plugin: 'io.spring.dependency-management'
-    apply plugin: "io.freefair.lombok"
     apply plugin: 'maven-publish'
 
     repositories {
@@ -29,15 +24,20 @@ allprojects {
     }
 
     dependencies {
+        implementation "org.modelmapper:modelmapper:2.4.4"
         implementation "org.springframework.boot:spring-boot-starter-web"
-        implementation "org.springframework.boot:spring-boot-starter-actuator"
         implementation "org.springframework.data:spring-data-jpa"
         implementation "org.springframework.boot:spring-boot-starter"
         testImplementation "org.springframework.boot:spring-boot-starter-test"
+        compileOnly 'org.projectlombok:lombok:1.18.22'
+        annotationProcessor 'org.projectlombok:lombok:1.18.22'
+        testCompileOnly 'org.projectlombok:lombok:1.18.22'
+        testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
     }
 
+    test {
+        useJUnitPlatform()
+        testLogging.showStandardStreams = true
+    }
 
 }
-
-
-

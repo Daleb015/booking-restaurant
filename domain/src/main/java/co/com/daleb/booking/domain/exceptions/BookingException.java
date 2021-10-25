@@ -1,17 +1,21 @@
 package co.com.daleb.booking.domain.exceptions;
 
 import co.com.daleb.booking.domain.dtos.ErrorDto;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
+@NoArgsConstructor
 public class BookingException extends Exception {
 
-    private final String code;
+    private String code;
 
-    private final int responseCode;
+    private int responseCode;
 
-    private final List<ErrorDto> errorList = new ArrayList<ErrorDto>();
+    private List<ErrorDto> errorList = new ArrayList<ErrorDto>();
 
     public BookingException(String code, int responseCode, String message){
         super(message);
@@ -26,15 +30,4 @@ public class BookingException extends Exception {
         this.errorList.addAll(errorList);
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public int getResponseCode() {
-        return responseCode;
-    }
-
-    public List<ErrorDto> getErrorList() {
-        return errorList;
-    }
 }
