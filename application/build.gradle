@@ -3,5 +3,6 @@ apply plugin: 'org.springframework.boot'
 dependencies {
     implementation "org.springframework.boot:spring-boot-starter-actuator"
     implementation project(':domain')
+    implementation "io.springfox:springfox-boot-starter:3.0.0"
 
 }
