@@ -14,13 +14,14 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = "/api/booking-restaurant/" + "v1")
 public class RestaurantController {
 
     private final RestaurantService restaurantService;
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping(value = "restaurant/{restaurantId}",produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/restaurant/{restaurantId}",produces = MediaType.APPLICATION_JSON_VALUE)
     public BookingResponseRest<RestaurantRest> getRestaurantById( @PathVariable Long restaurantId) throws BookingException {
         return BookingResponseRest.<RestaurantRest>builder()
                 .status("Success")
@@ -31,7 +32,7 @@ public class RestaurantController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping(value = "restaurants",produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/restaurants",produces = MediaType.APPLICATION_JSON_VALUE)
     public BookingResponseRest<List<RestaurantRest>> getRestaurants() throws BookingException{
         return BookingResponseRest.<List<RestaurantRest>>builder()
                 .status("Success")
