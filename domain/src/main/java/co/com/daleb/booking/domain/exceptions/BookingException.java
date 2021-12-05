@@ -15,7 +15,7 @@ public class BookingException extends Exception {
 
     private int responseCode;
 
-    private List<ErrorDto> errorList = new ArrayList<ErrorDto>();
+    private final List<ErrorDto> errorList = new ArrayList<>();
 
     public BookingException(String code, int responseCode, String message){
         super(message);

@@ -39,6 +39,7 @@ public class ReservationServiceImpl implements ReservationService {
     public String deleteReservation(String locator) throws BookingException {
         reservationRepository.deleteByLocator(locator)
                 .orElseThrow(() -> new NotFoundException("LOCATOR_NOT_FOUND","LOCATOR_NOT_FOUND"));
+
         return "LOCATOR_DELETED";
     }
 
@@ -71,7 +72,7 @@ public class ReservationServiceImpl implements ReservationService {
                 .orElseThrow(() -> new NotFoundException("TURN_NOT_FOUND","TURN_NOT_FOUND"));
     }
 
-    private String generateLocator(RestaurantEntity restaurantEntity, CreateReservationRest createReservationRest) throws BookingException {
+    private String generateLocator(RestaurantEntity restaurantEntity, CreateReservationRest createReservationRest) {
         return restaurantEntity.getName() + createReservationRest.getTurnId();
     }
 

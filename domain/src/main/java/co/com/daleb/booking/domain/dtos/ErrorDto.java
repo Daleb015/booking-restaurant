@@ -1,16 +1,12 @@
 package co.com.daleb.booking.domain.dtos;
 
-import java.io.Serializable;
+import lombok.Data;
 
-public class ErrorDto implements Serializable {
+@Data
+public class ErrorDto {
 
     private String name;
 
     private String value;
-
-    public ErrorDto(String name, String value) {
-        this.name = name;
-        this.value = value;
-    }
 
 }
