@@ -9,7 +9,7 @@ class BookingApplicationTest {
 
     @Test
     void contextLoads() {
-        System.out.print("Corriento el test");
+        System.out.print("Corriendo el test");
     }
 
 }

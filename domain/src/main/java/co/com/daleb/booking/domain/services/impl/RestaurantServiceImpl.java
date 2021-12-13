@@ -25,6 +25,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public RestaurantRest getRestaurantById(Long restaurantId) throws BookingException {
+
         return modelMapper.map(getRestaurantEntity(restaurantId),RestaurantRest.class);
     }
 
