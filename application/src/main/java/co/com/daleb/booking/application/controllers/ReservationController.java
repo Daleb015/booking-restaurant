@@ -20,7 +20,7 @@ public class ReservationController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path = "/reservation/{reservationId}")
-    public BookingResponseRest<ReservationRest> reservationById(@PathVariable Long reservationId) throws BookingException {
+    public BookingResponseRest<ReservationRest> getReservationById(@PathVariable Long reservationId) throws BookingException {
         return BookingResponseRest.<ReservationRest>builder()
                 .status("Success")
                 .message("OK")
