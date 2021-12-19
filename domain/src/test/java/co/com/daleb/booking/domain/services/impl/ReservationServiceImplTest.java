@@ -136,4 +136,24 @@ public class ReservationServiceImplTest {
 
     }
 
+    @Test
+    public void deleteReservationTest() throws BookingException{
+
+        Mockito.when(reservationRepository.deleteByLocator(LOCATOR)).thenReturn(Optional.of(reservationEntity));
+
+        String response  = reservationServiceImpl.deleteReservation(LOCATOR);
+
+        assertEquals(response,"LOCATOR_DELETED");
+
+    }
+
+    @Test
+    public void deleteReservationErrorTest() throws BookingException{
+
+        Mockito.when(reservationRepository.deleteByLocator(LOCATOR)).thenReturn(Optional.empty());
+
+        assertThrows(BookingException.class,() -> reservationServiceImpl.deleteReservation(LOCATOR));
+
+    }
+
 }
