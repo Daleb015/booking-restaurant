@@ -32,7 +32,12 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public ReservationRest getReservation(Long reservationId) throws BookingException {
-        return modelMapper.map(getReservationEntityById(reservationId), ReservationRest.class);
+
+        ReservationEntity reservationEntity = getReservationEntityById(reservationId);
+
+        ReservationRest reservationRest = modelMapper.map(reservationEntity, ReservationRest.class);
+
+        return reservationRest;
     }
 
     @Override
@@ -48,16 +53,20 @@ public class ReservationServiceImpl implements ReservationService {
 
         final RestaurantEntity restaurant = getRestaurantEntityById(createReservationRest.getRestaurantId());
 
-        return save(ReservationEntity.builder()
+        ReservationEntity reservationEntity = ReservationEntity.builder()
                 .locator(generateLocator(restaurant, createReservationRest))
                 .person(createReservationRest.getPerson())
                 .date(createReservationRest.getDate())
                 .restaurant(restaurant)
                 .turn(getTurnEntityById(createReservationRest.getTurnId()).getName())
-                .build()).getLocator();
+                .build();
+
+        save(reservationEntity);
+
+        return reservationEntity.getLocator();
     }
 
-    private ReservationEntity getReservationEntityById(Long reservationId) throws BookingException {
+    public ReservationEntity getReservationEntityById(Long reservationId) throws BookingException {
         return reservationRepository.findById(reservationId)
                 .orElseThrow(() -> new NotFoundException("SNOT-404-1", "RESERVATION_NOT_FOUND"));
     }
@@ -72,7 +81,7 @@ public class ReservationServiceImpl implements ReservationService {
                 .orElseThrow(() -> new NotFoundException("TURN_NOT_FOUND","TURN_NOT_FOUND"));
     }
 
-    private String generateLocator(RestaurantEntity restaurantEntity, CreateReservationRest createReservationRest) {
+    public String generateLocator(RestaurantEntity restaurantEntity, CreateReservationRest createReservationRest) {
         return restaurantEntity.getName() + createReservationRest.getTurnId();
     }
 
