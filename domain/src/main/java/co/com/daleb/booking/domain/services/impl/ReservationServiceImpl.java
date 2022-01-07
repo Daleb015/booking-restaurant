@@ -14,9 +14,11 @@ import co.com.daleb.booking.infraestructure.sql.jpa.RestaurantRepository;
 import co.com.daleb.booking.infraestructure.sql.jpa.TurnRepository;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @RequiredArgsConstructor
 @Data
 @Service
@@ -42,8 +44,15 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public String deleteReservation(String locator) throws BookingException {
-        reservationRepository.deleteByLocator(locator)
+
+        reservationRepository.findByLocator(locator)
+                .map(r -> {
+                    log.info(r.toString());
+                    return r;
+                })
                 .orElseThrow(() -> new NotFoundException("LOCATOR_NOT_FOUND","LOCATOR_NOT_FOUND"));
+
+        reservationRepository.deleteByLocator(locator);
 
         return "LOCATOR_DELETED";
     }
