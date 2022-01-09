@@ -14,7 +14,6 @@ import java.util.List;
 @Service
 public class RestaurantEntityService {
 
-    @Autowired
     private RestaurantRepository restaurantRepository;
 
     public List<RestaurantEntity> findAll(){

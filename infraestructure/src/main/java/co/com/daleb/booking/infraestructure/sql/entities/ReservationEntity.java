@@ -34,6 +34,15 @@ public class ReservationEntity {
     @Column(name = "DATE")
     private LocalDate date;
 
+    @Column(name = "EMAIL")
+    private String email;
+
+    @Column(name = "NAME")
+    private String name;
+
+    @Column(name = "PAYMENT")
+    private Boolean payment;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "RESTAURANT_ID",nullable = false)
     private RestaurantEntity restaurant;

@@ -27,6 +27,9 @@ public class RestaurantEntity {
     @Column(name = "IMAGE")
     private String image;
 
+    @Column(name = "PRICE")
+    private Integer price;
+
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "restaurant")
     private List<ReservationEntity> reservations;
 
