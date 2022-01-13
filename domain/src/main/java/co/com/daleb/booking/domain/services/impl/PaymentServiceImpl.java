@@ -1,8 +1,12 @@
 package co.com.daleb.booking.domain.services.impl;
 
+import co.com.daleb.booking.domain.exceptions.BookingException;
 import co.com.daleb.booking.domain.jsons.PaymentConfirmRequestRest;
 import co.com.daleb.booking.domain.jsons.PaymentIntentRequestRest;
+import co.com.daleb.booking.domain.services.EmailService;
 import co.com.daleb.booking.domain.services.PaymentService;
+import co.com.daleb.booking.domain.services.ReservationService;
+import co.com.daleb.booking.infraestructure.sql.jpa.ReservationRepository;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
@@ -24,6 +28,10 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Value("${stripe.key.public}")
     private String stripePublicKey;
+
+    private final EmailService emailService;
+
+    private final ReservationService reservationService;
 
     public enum Currency{
         USD,EUR;
@@ -47,7 +55,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public PaymentIntent paymentConfirm(PaymentConfirmRequestRest paymentConfirmRequestRest) throws StripeException {
+    public PaymentIntent paymentConfirm(PaymentConfirmRequestRest paymentConfirmRequestRest) throws StripeException, BookingException {
 
         Stripe.apiKey = stripePrivateKey;
 
@@ -56,6 +64,10 @@ public class PaymentServiceImpl implements PaymentService {
         Map<String,Object> params = new HashMap<>();
         params.put("payment_method","pm_card_visa");
         paymentIntent.confirm(params);
+
+        emailService.sendEmail(paymentConfirmRequestRest.getEmail(),"PAYMENT",paymentConfirmRequestRest.getName());
+
+        reservationService.changePaymentReservation(paymentConfirmRequestRest.getLocator());
 
         return paymentIntent;
     }

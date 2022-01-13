@@ -1,5 +1,6 @@
 package co.com.daleb.booking.domain.services;
 
+import co.com.daleb.booking.domain.exceptions.BookingException;
 import co.com.daleb.booking.domain.jsons.PaymentConfirmRequestRest;
 import co.com.daleb.booking.domain.jsons.PaymentIntentRequestRest;
 import com.stripe.exception.StripeException;
@@ -9,7 +10,7 @@ public interface PaymentService {
 
     PaymentIntent paymentIntent(PaymentIntentRequestRest paymentIntentRequestRest) throws StripeException;
 
-    PaymentIntent paymentConfirm(PaymentConfirmRequestRest paymentConfirmRequestRest) throws StripeException;
+    PaymentIntent paymentConfirm(PaymentConfirmRequestRest paymentConfirmRequestRest) throws StripeException, BookingException;
 
     PaymentIntent paymentCancel(String paymentId) throws StripeException;
 

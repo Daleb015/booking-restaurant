@@ -19,6 +19,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Slf4j
 @RequiredArgsConstructor
 @Data
@@ -78,6 +80,18 @@ public class ReservationServiceImpl implements ReservationService {
         emailService.sendEmail(reservationEntity.getEmail(),"RESERVATION",reservationEntity.getName());
 
         return reservationEntity.getLocator();
+    }
+
+    @Override
+    public void changePaymentReservation(String locator) throws BookingException {
+        Optional.ofNullable(locator)
+                .flatMap(reservationRepository::findByLocator)
+                .map(r -> {
+                    r.setPayment(true);
+                    return r;
+                })
+                .map(reservationRepository::save)
+                .orElseThrow(() -> new NotFoundException("LOCATOR_NOT_FOUND","LOCATOR_NOT_FOUND"));
     }
 
     public ReservationEntity getReservationEntityById(Long reservationId) throws BookingException {

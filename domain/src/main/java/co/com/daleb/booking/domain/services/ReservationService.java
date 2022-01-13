@@ -12,4 +12,6 @@ public interface ReservationService {
 
     String createReservation(CreateReservationRest createReservationRest) throws BookingException;
 
+    void changePaymentReservation(String locator) throws BookingException;
+
 }

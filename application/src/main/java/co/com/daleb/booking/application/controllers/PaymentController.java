@@ -1,5 +1,6 @@
 package co.com.daleb.booking.application.controllers;
 
+import co.com.daleb.booking.domain.exceptions.BookingException;
 import co.com.daleb.booking.domain.jsons.BookingResponseRest;
 import co.com.daleb.booking.domain.jsons.PaymentConfirmRequestRest;
 import co.com.daleb.booking.domain.jsons.PaymentIntentRequestRest;
@@ -33,7 +34,7 @@ public class PaymentController {
 
     @PostMapping(value = "/confirm", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<String> paymentIntent(@RequestBody PaymentConfirmRequestRest paymentConfirmRequestRest) throws StripeException {
+    public ResponseEntity<String> paymentIntent(@RequestBody PaymentConfirmRequestRest paymentConfirmRequestRest) throws StripeException, BookingException {
 
         PaymentIntent paymentIntent = paymentService.paymentConfirm(paymentConfirmRequestRest);
 
