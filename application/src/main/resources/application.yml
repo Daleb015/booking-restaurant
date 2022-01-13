@@ -24,3 +24,8 @@ spring:
         smtp:
           auth: true
           starttls.enable: true
+
+stripe:
+  key:
+    public: ${STRIPE_PUBLIC_KEY}
+    secret: ${STRIPE_PRIVATE_KEY}
