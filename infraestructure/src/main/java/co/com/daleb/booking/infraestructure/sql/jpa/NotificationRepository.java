@@ -9,6 +9,6 @@ import java.util.Optional;
 @Repository
 public interface NotificationRepository extends CrudRepository<NotificationEntity,Integer> {
 
-    Optional<NotificationEntity> findByTemplateType(String templateType);
+    Optional<NotificationEntity> findByTemplateCode(String templateCode);
 
 }

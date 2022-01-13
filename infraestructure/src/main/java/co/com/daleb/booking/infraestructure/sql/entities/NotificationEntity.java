@@ -23,7 +23,7 @@ public class NotificationEntity {
     @Column(name = "TEMPLATE")
     private String template;
 
-    @Column(name = "TEMPLATE_TYPE")
-    private String templateType;
+    @Column(name = "TEMPLATE_CODE")
+    private String templateCode;
 
 }

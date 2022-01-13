@@ -5,6 +5,7 @@ import co.com.daleb.booking.domain.exceptions.InternalServerError;
 import co.com.daleb.booking.domain.exceptions.NotFoundException;
 import co.com.daleb.booking.domain.jsons.CreateReservationRest;
 import co.com.daleb.booking.domain.jsons.ReservationRest;
+import co.com.daleb.booking.domain.services.EmailService;
 import co.com.daleb.booking.domain.services.ReservationService;
 import co.com.daleb.booking.infraestructure.sql.entities.ReservationEntity;
 import co.com.daleb.booking.infraestructure.sql.entities.RestaurantEntity;
@@ -32,6 +33,8 @@ public class ReservationServiceImpl implements ReservationService {
 
     private final ModelMapper modelMapper;
 
+    private final EmailService emailService;
+
     @Override
     public ReservationRest getReservation(Long reservationId) throws BookingException {
 
@@ -45,14 +48,12 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public String deleteReservation(String locator) throws BookingException {
 
-        reservationRepository.findByLocator(locator)
-                .map(r -> {
-                    log.info(r.toString());
-                    return r;
-                })
+        ReservationEntity reservationEntity = reservationRepository.findByLocator(locator)
                 .orElseThrow(() -> new NotFoundException("LOCATOR_NOT_FOUND","LOCATOR_NOT_FOUND"));
 
         reservationRepository.deleteByLocator(locator);
+
+        emailService.sendEmail(reservationEntity.getEmail(),"CANCEL",reservationEntity.getName());
 
         return "LOCATOR_DELETED";
     }
@@ -67,10 +68,14 @@ public class ReservationServiceImpl implements ReservationService {
                 .person(createReservationRest.getPerson())
                 .date(createReservationRest.getDate())
                 .restaurant(restaurant)
+                .email(createReservationRest.getEmail())
+                .name(createReservationRest.getName())
                 .turn(getTurnEntityById(createReservationRest.getTurnId()).getName())
                 .build();
 
         save(reservationEntity);
+
+        emailService.sendEmail(reservationEntity.getEmail(),"RESERVATION",reservationEntity.getName());
 
         return reservationEntity.getLocator();
     }

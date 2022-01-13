@@ -28,4 +28,10 @@ public class CreateReservationRest {
     @JsonProperty("restaurantId")
     private Long restaurantId;
 
+    @JsonProperty("email")
+    private String email;
+
+    @JsonProperty("name")
+    private String name;
+
 }

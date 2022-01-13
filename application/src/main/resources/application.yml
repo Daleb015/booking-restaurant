@@ -16,14 +16,11 @@ spring:
   mail:
     default-encoding: UTF-8
     host: smtp.gmail.com
+    port: 587
     username: ${EMAIL_USER_ACCOUNT:@gmail.com}
     password: ${EMAIL_PASSWORD:password}
-    protocol: smtp
     properties:
       mail:
         smtp:
           auth: true
-        socketFactory:
-          port: 465
-          class: javax.net.ssl.SSLSocketFactory
-          fallback: false
+          starttls.enable: true

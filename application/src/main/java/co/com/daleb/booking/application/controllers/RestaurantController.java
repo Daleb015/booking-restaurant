@@ -4,6 +4,7 @@ package co.com.daleb.booking.application.controllers;
 import co.com.daleb.booking.domain.exceptions.BookingException;
 import co.com.daleb.booking.domain.jsons.BookingResponseRest;
 import co.com.daleb.booking.domain.jsons.RestaurantRest;
+import co.com.daleb.booking.domain.services.EmailService;
 import co.com.daleb.booking.domain.services.RestaurantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,8 @@ import java.util.List;
 public class RestaurantController {
 
     private final RestaurantService restaurantService;
+
+    private final EmailService emailService;
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "/restaurant/{restaurantId}",produces = MediaType.APPLICATION_JSON_VALUE)
@@ -41,5 +44,4 @@ public class RestaurantController {
                 .data(restaurantService.getRestaurants())
                 .build();
     }
-
 }
