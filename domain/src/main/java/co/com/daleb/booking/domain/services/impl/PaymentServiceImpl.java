@@ -19,7 +19,7 @@ import java.util.Map;
 @Service
 public class PaymentServiceImpl implements PaymentService {
 
-    @Value("${stripe.key.private}")
+    @Value("${stripe.key.secret}")
     private String stripePrivateKey;
 
     @Value("${stripe.key.public}")

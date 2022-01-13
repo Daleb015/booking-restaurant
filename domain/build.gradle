@@ -1,4 +1,3 @@
 dependencies {
     implementation project(':infraestructure')
-    implementation ('com.stripe:stripe-java:20.94.0')
 }
