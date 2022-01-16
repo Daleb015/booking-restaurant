@@ -34,5 +34,8 @@ public class RestaurantRest {
     @JsonProperty("turns")
     private List<TurnRest> turns;
 
+    @JsonProperty("price")
+    private Integer price;
+
 
 }

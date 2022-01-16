@@ -89,12 +89,12 @@ CREATE TABLE IF NOT EXISTS `BOOKING_RESTAURANT`.`NOTIFICATION` (
 -- INSERT TEST VALUES RESTAURANT
 -- -----------------------------------------------------
 
+INSERT INTO `BOOKING_RESTAURANT`.`RESTAURANT` (`ID`, `NAME`, `DESCRIPTION`, `ADDRESS`, `IMAGE` ,`PRICE`)
+VALUES ('1', 'McDonalds', 'Hamburguesas', 'cr 7 # 6 - 12', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG112IWS3mhJkk0wE3gPGRb50cEbd2jojy2w&usqp=CAU',500);
 INSERT INTO `BOOKING_RESTAURANT`.`RESTAURANT` (`ID`, `NAME`, `DESCRIPTION`, `ADDRESS`, `IMAGE`) 
-VALUES ('1', 'McDonalds', 'Hamburguesas', 'cr 7 # 6 - 12', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG112IWS3mhJkk0wE3gPGRb50cEbd2jojy2w&usqp=CAU');
+VALUES ('2', 'KFC', 'Pollos', 'Plaza central', 'https://media-cdn.tripadvisor.com/media/photo-s/09/83/bc/07/kfc.jpg',500);
 INSERT INTO `BOOKING_RESTAURANT`.`RESTAURANT` (`ID`, `NAME`, `DESCRIPTION`, `ADDRESS`, `IMAGE`) 
-VALUES ('2', 'KFC', 'Pollos', 'Plaza central', 'https://media-cdn.tripadvisor.com/media/photo-s/09/83/bc/07/kfc.jpg');
-INSERT INTO `BOOKING_RESTAURANT`.`RESTAURANT` (`ID`, `NAME`, `DESCRIPTION`, `ADDRESS`, `IMAGE`) 
-VALUES ('3', 'PIZZA HUT', 'Pizza', 'Centro mayor', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuZ82GADbtSe45_FeY3YpjAYZe1M04hcVQqA&usqp=CAU');
+VALUES ('3', 'PIZZA HUT', 'Pizza', 'Centro mayor', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuZ82GADbtSe45_FeY3YpjAYZe1M04hcVQqA&usqp=CAU',500);
 
 -- -----------------------------------------------------
 -- INSERT TEST VALUES TURN

@@ -6,7 +6,6 @@ import co.com.daleb.booking.domain.jsons.PaymentIntentRequestRest;
 import co.com.daleb.booking.domain.services.EmailService;
 import co.com.daleb.booking.domain.services.PaymentService;
 import co.com.daleb.booking.domain.services.ReservationService;
-import co.com.daleb.booking.infraestructure.sql.jpa.ReservationRepository;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;

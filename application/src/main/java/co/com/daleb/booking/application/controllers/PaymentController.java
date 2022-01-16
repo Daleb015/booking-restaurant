@@ -1,7 +1,6 @@
 package co.com.daleb.booking.application.controllers;
 
 import co.com.daleb.booking.domain.exceptions.BookingException;
-import co.com.daleb.booking.domain.jsons.BookingResponseRest;
 import co.com.daleb.booking.domain.jsons.PaymentConfirmRequestRest;
 import co.com.daleb.booking.domain.jsons.PaymentIntentRequestRest;
 import co.com.daleb.booking.domain.services.PaymentService;
