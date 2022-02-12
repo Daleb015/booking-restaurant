@@ -18,37 +18,31 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/api/booking-restaurant/v1/payment")
 public class PaymentController {
 
-    private final PaymentService paymentService;
+  private final PaymentService paymentService;
 
+  @PostMapping(value = "/intent", produces = MediaType.APPLICATION_JSON_VALUE)
+  @ResponseStatus(HttpStatus.OK)
+  public ResponseEntity<String> paymentIntent(@RequestBody PaymentIntentRequestRest paymentIntentRequestRest)
+    throws StripeException {
+    PaymentIntent paymentIntent = paymentService.paymentIntent(paymentIntentRequestRest);
 
-    @PostMapping(value = "/intent", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<String> paymentIntent(@RequestBody PaymentIntentRequestRest paymentIntentRequestRest) throws StripeException {
+    return new ResponseEntity<String>(paymentIntent.toJson(), HttpStatus.OK);
+  }
 
-        PaymentIntent paymentIntent = paymentService.paymentIntent(paymentIntentRequestRest);
+  @PostMapping(value = "/confirm", produces = MediaType.APPLICATION_JSON_VALUE)
+  @ResponseStatus(HttpStatus.OK)
+  public ResponseEntity<String> paymentIntent(@RequestBody PaymentConfirmRequestRest paymentConfirmRequestRest)
+    throws StripeException, BookingException {
+    PaymentIntent paymentIntent = paymentService.paymentConfirm(paymentConfirmRequestRest);
 
-        return new ResponseEntity<String>(paymentIntent.toJson(), HttpStatus.OK);
+    return new ResponseEntity<String>(paymentIntent.toJson(), HttpStatus.OK);
+  }
 
-    }
+  @GetMapping(value = "/cancel/{paymentId}", produces = MediaType.APPLICATION_JSON_VALUE)
+  @ResponseStatus(HttpStatus.OK)
+  public ResponseEntity<String> paymentIntent(@PathVariable String paymentId) throws StripeException {
+    PaymentIntent paymentIntent = paymentService.paymentCancel(paymentId);
 
-    @PostMapping(value = "/confirm", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<String> paymentIntent(@RequestBody PaymentConfirmRequestRest paymentConfirmRequestRest) throws StripeException, BookingException {
-
-        PaymentIntent paymentIntent = paymentService.paymentConfirm(paymentConfirmRequestRest);
-
-        return new ResponseEntity<String>(paymentIntent.toJson(), HttpStatus.OK);
-
-    }
-
-    @GetMapping(value = "/cancel/{paymentId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<String> paymentIntent(@PathVariable String paymentId) throws StripeException {
-
-        PaymentIntent paymentIntent = paymentService.paymentCancel(paymentId);
-
-        return new ResponseEntity<String>(paymentIntent.toJson(), HttpStatus.OK);
-
-    }
-
+    return new ResponseEntity<String>(paymentIntent.toJson(), HttpStatus.OK);
+  }
 }

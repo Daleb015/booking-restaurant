@@ -7,9 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class BookingApplicationTest {
 
-    @Test
-    void contextLoads() {
-        System.out.print("Corriendo el test");
-    }
-
+  @Test
+  void contextLoads() {
+    System.out.print("Corriendo el test");
+  }
 }

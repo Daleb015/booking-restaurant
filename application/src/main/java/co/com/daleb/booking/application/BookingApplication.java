@@ -9,12 +9,12 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan("co.com.daleb.booking.infraestructure.sql")
 @EnableJpaRepositories("co.com.daleb.booking.infraestructure.sql.jpa")
 public class BookingApplication {
-    public static void main(String[] args) {
-        try {
-            SpringApplication.run(BookingApplication.class,args);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
 
+  public static void main(String[] args) {
+    try {
+      SpringApplication.run(BookingApplication.class, args);
+    } catch (Exception e) {
+      e.printStackTrace();
     }
+  }
 }

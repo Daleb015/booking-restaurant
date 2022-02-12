@@ -14,17 +14,17 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/api/booking-restaurant/v1")
 public class CancelReservationController {
 
-    private final ReservationService reservationService;
+  private final ReservationService reservationService;
 
-    @ResponseStatus(HttpStatus.OK)
-    @DeleteMapping(value = "reservation",produces = MediaType.APPLICATION_JSON_VALUE)
-    public BookingResponseRest<String> deleteReservation(@RequestParam String locator) throws BookingException {
-        return BookingResponseRest.<String>builder()
-                .status("Success")
-                .message("OK")
-                .code(String.valueOf(HttpStatus.OK))
-                .data(reservationService.deleteReservation(locator))
-                .build();
-    }
-
+  @ResponseStatus(HttpStatus.OK)
+  @DeleteMapping(value = "reservation", produces = MediaType.APPLICATION_JSON_VALUE)
+  public BookingResponseRest<String> deleteReservation(@RequestParam String locator) throws BookingException {
+    return BookingResponseRest
+      .<String>builder()
+      .status("Success")
+      .message("OK")
+      .code(String.valueOf(HttpStatus.OK))
+      .data(reservationService.deleteReservation(locator))
+      .build();
+  }
 }
