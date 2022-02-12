@@ -9,9 +9,8 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BookingResponseRest<T> {
 
-    private String status;
-    private String code;
-    private String message;
-    private T data;
-
+  private String status;
+  private String code;
+  private String message;
+  private T data;
 }

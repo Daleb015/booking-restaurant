@@ -2,12 +2,11 @@ package co.com.daleb.booking.domain.jsons;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,26 +15,24 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RestaurantRest {
 
-    @JsonProperty("id")
-    private Long id;
+  @JsonProperty("id")
+  private Long id;
 
-    @JsonProperty("name")
-    private String name;
+  @JsonProperty("name")
+  private String name;
 
-    @JsonProperty("address")
-    private String address;
+  @JsonProperty("address")
+  private String address;
 
-    @JsonProperty("description")
-    private String description;
+  @JsonProperty("description")
+  private String description;
 
-    @JsonProperty("image")
-    private String image;
+  @JsonProperty("image")
+  private String image;
 
-    @JsonProperty("turns")
-    private List<TurnRest> turns;
+  @JsonProperty("turns")
+  private List<TurnRest> turns;
 
-    @JsonProperty("price")
-    private Integer price;
-
-
+  @JsonProperty("price")
+  private Integer price;
 }

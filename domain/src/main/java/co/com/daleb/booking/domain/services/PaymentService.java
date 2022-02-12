@@ -7,11 +7,10 @@ import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
 
 public interface PaymentService {
+  PaymentIntent paymentIntent(PaymentIntentRequestRest paymentIntentRequestRest) throws StripeException;
 
-    PaymentIntent paymentIntent(PaymentIntentRequestRest paymentIntentRequestRest) throws StripeException;
+  PaymentIntent paymentConfirm(PaymentConfirmRequestRest paymentConfirmRequestRest)
+    throws StripeException, BookingException;
 
-    PaymentIntent paymentConfirm(PaymentConfirmRequestRest paymentConfirmRequestRest) throws StripeException, BookingException;
-
-    PaymentIntent paymentCancel(String paymentId) throws StripeException;
-
+  PaymentIntent paymentCancel(String paymentId) throws StripeException;
 }

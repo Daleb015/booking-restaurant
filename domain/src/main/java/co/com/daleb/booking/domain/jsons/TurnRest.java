@@ -14,10 +14,9 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TurnRest {
 
-    @JsonProperty("id")
-    private Long id;
+  @JsonProperty("id")
+  private Long id;
 
-    @JsonProperty("name")
-    private String name;
-
+  @JsonProperty("name")
+  private String name;
 }

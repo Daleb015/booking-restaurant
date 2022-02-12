@@ -5,13 +5,11 @@ import co.com.daleb.booking.domain.jsons.CreateReservationRest;
 import co.com.daleb.booking.domain.jsons.ReservationRest;
 
 public interface ReservationService {
+  ReservationRest getReservation(Long reservationId) throws BookingException;
 
-    ReservationRest getReservation(Long reservationId) throws BookingException;
+  String deleteReservation(String locator) throws BookingException;
 
-    String deleteReservation(String locator) throws BookingException;
+  String createReservation(CreateReservationRest createReservationRest) throws BookingException;
 
-    String createReservation(CreateReservationRest createReservationRest) throws BookingException;
-
-    void changePaymentReservation(String locator) throws BookingException;
-
+  void changePaymentReservation(String locator) throws BookingException;
 }

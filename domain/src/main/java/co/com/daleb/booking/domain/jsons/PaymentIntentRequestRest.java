@@ -5,8 +5,7 @@ import lombok.Data;
 @Data
 public class PaymentIntentRequestRest {
 
-    private String description;
+  private String description;
 
-    private Integer price;
-
+  private Integer price;
 }

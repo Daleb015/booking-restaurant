@@ -7,12 +7,11 @@ import lombok.Data;
 @Builder(toBuilder = true)
 public class EmailTemplateDTO {
 
-    private Long id;
+  private Long id;
 
-    private String template;
+  private String template;
 
-    private String subject;
+  private String subject;
 
-    private String templateCode;
-
+  private String templateCode;
 }

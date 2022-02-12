@@ -5,12 +5,11 @@ import lombok.Data;
 @Data
 public class PaymentConfirmRequestRest {
 
-    private String paymentId;
+  private String paymentId;
 
-    private String name;
+  private String name;
 
-    private String email;
+  private String email;
 
-    private String locator;
-
+  private String locator;
 }
