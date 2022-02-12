@@ -1,11 +1,10 @@
 package co.com.daleb.booking.infraestructure.sql.entities;
 
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,15 +14,14 @@ import javax.persistence.*;
 @Table(name = "NOTIFICATION")
 public class NotificationEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID",unique = true,nullable = false)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "ID", unique = true, nullable = false)
+  private Long id;
 
-    @Column(name = "TEMPLATE")
-    private String template;
+  @Column(name = "TEMPLATE")
+  private String template;
 
-    @Column(name = "TEMPLATE_CODE")
-    private String templateCode;
-
+  @Column(name = "TEMPLATE_CODE")
+  private String templateCode;
 }
